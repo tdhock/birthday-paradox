@@ -5,8 +5,8 @@ plus.colors <- c(
   "tous différents"="blue",
   "deux pareils"="red",
   zéro="black")
-prob.dt <- data.table(num.œuvres=1:num.possible)[
-, num.i := num.possible-num.œuvres+1
+prob.dt <- data.table(num.personnes=1:num.possible)[
+, num.i := num.possible-num.personnes+1
 ][
 , prob.i := num.i/num.possible
 ][
@@ -26,20 +26,20 @@ prob.dt[order(abs(diff))]
 text.dt <- rbind(
   prob.dt[plus.probable=="deux pareils"][1])
 (gg <- ggplot()+
-  ggtitle("combien d’œuvres pour avoir une probabilité plus forte ?")+
+  ggtitle("combien de personnes pour avoir une probabilité plus forte ?")+
    scale_color_manual(values=plus.colors)+
-   ylab("probabilité que tous les œuvres sont différents")+
+   ylab("probabilité que tous les anniversaires sont différents")+
   geom_point(aes(
-    num.œuvres, cumprod, color=plus.probable),
+    num.personnes, cumprod, color=plus.probable),
     data=text.dt)+    
   geom_text(aes(
-    num.œuvres, cumprod, color=plus.probable,
-    label=sprintf(" œuvres=%d prob=%.3f", num.œuvres, cumprod)),
+    num.personnes, cumprod, color=plus.probable,
+    label=sprintf(" personnes=%d prob=%.3f", num.personnes, cumprod)),
     vjust=-0.5,
     hjust=0,
     data=text.dt)+    
   geom_line(aes(
-    num.œuvres, cumprod, color=plus.probable),
+    num.personnes, cumprod, color=plus.probable),
     data=prob.dt))
 
 (logx <- gg+scale_x_log10())
