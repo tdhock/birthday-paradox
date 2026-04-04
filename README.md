@@ -30,3 +30,19 @@ The figure above shows that
 [figure-gg-bday.R](figure-gg-bday.R) does the birthday computation, yielding the expected result shown below.
 
 ![ggplot](figure-gg-bday.png)
+
+## atime analysis
+
+I analyzed the asymptotic time and memory usage of the different computation methods using atime.
+
+[figure-atime.R](figure-atime.R) makes
+
+![ggplot](figure-atime.png)
+
+![ggplot](figure-atime-large.png)
+
+Both show that
+
+* in the kilobytes panel, sapply has a larger slope than cumsum and cumprod, which implies a larger asymptotic memory complexity class.
+* for small N, cumsum is slightly slower than cumprod, which is expected because cumsum involves exp and log.
+* for large N, cumsum is faster than cumprod, which is unexpected. Is this a bug in R? it seems to happen when the product is 0, which is unexpected, because this should be easier/faster than multiplying by non-zero.
