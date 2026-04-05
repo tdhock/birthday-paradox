@@ -1,4 +1,5 @@
 library(data.table)
+remotes::install_github("tdhock/atime@check=TRUE")
 
 combinations <- 80640
 alist <- atime::atime(
@@ -7,10 +8,8 @@ alist <- atime::atime(
   pkg=cumprod::cumprod_interface((combinations-(1:N)+1)/combinations),
   cumprod=cumprod((combinations-(1:N)+1)/combinations),
   cumsum=exp(cumsum(log((combinations-(1:N)+1)/combinations))),
-  result=TRUE)
-dcast(
-  alist$measurements, N ~ expr.name, value.var="result"
-)[, equal := all.equal(sapply[[1]], cumprod[[1]]), by=N][]
+  ##foo=1,
+  check=TRUE)
 png("figure-atime.png", width=4, height=6, units="in", res=200)
 plot(alist)
 dev.off()
@@ -23,10 +22,7 @@ alist <- atime::atime(
   pkg=cumprod::cumprod_interface((N-(1:N)+1)/N),
   cumprod=cumprod((N-(1:N)+1)/N),
   cumsum=exp(cumsum(log((N-(1:N)+1)/N))),
-  result=TRUE)
-dcast(
-  alist$measurements, N ~ expr.name, value.var="result"
-)[, equal := all.equal(sapply[[1]], cumprod[[1]]), by=N][]
+  check=TRUE)
 plot(alist)
 
 aref <- atime::references_best(alist)
@@ -41,7 +37,7 @@ alist <- atime::atime(
   pkg=cumprod::cumprod_interface((combinations-(1:N)+1)/combinations),
   cumprod=cumprod((combinations-(1:N)+1)/combinations),
   cumsum=exp(cumsum(log((combinations-(1:N)+1)/combinations))),
-  result=TRUE)
+  check=TRUE)
 plot(alist)
 png("figure-atime-large.png", width=4, height=6, units="in", res=200)
 plot(alist)
