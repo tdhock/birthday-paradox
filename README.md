@@ -47,9 +47,29 @@ Both show that
 * for small N, cumsum is slightly slower than cumprod, which is expected because cumsum involves exp and log.
 * for large N, cumsum is faster than cumprod, which is unexpected. Is this a bug in R? it seems to happen when the product is 0, which is unexpected, because this should be easier/faster than multiplying by non-zero.
 
+I think R runs this code, in `src/main/cum.c`
+
+```c
+static SEXP cumprod(SEXP x, SEXP s)
+{
+    LDOUBLE prod;
+    double *rx = REAL(x), *rs = REAL(s);
+    prod = 1.0;
+    for (R_xlen_t i = 0 ; i < XLENGTH(x) ; i++) {
+	prod *= rx[i]; /* NA and NaN propagated */
+	rs[i] = (double) prod;
+    }
+    return ISNAN(prod) ? handleNaN(x, s) : s;
+}
+```
+
+[figure-cum.R](figure-cum.R) makes
+
+![ggplot](figure-cum.png)
+
 ## empirical verification of generic constant time formula
 
-[figure-coincidenc.R](figure-coincidence.R) makes
+[figure-coincidence.R](figure-coincidence.R) makes
 
 ![ggplot](figure-coincidence.png)
 
