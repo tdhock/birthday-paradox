@@ -26,6 +26,8 @@ prob.dt[order(abs(diff))]
 text.dt <- rbind(
   prob.dt[plus.probable=="deux pareils"][1],
   prob.dt[num.œuvres==102])
+## https://en.wikipedia.org/wiki/Birthday_problem#Arbitrary_number_of_days says we can use
+sqrt(2*num.possible*log(2))
 (gg <- ggplot()+
   ggtitle("combien d’œuvres pour avoir une probabilité plus forte ?")+
    scale_color_manual(values=plus.colors)+

@@ -46,3 +46,18 @@ Both show that
 * in the kilobytes panel, sapply has a larger slope than cumsum and cumprod, which implies a larger asymptotic memory complexity class.
 * for small N, cumsum is slightly slower than cumprod, which is expected because cumsum involves exp and log.
 * for large N, cumsum is faster than cumprod, which is unexpected. Is this a bug in R? it seems to happen when the product is 0, which is unexpected, because this should be easier/faster than multiplying by non-zero.
+
+## empirical verification of generic constant time formula
+
+[figure-coincidenc.R](figure-coincidence.R) makes
+
+![ggplot](figure-coincidence.png)
+
+![ggplot](figure-coincidence-ref.png)
+
+We see that 
+
+* the two methods compute the same results, 
+* the result is O(sqrt N),
+* cumprod takes linear time and space,
+* wiki method takes constant time and space.
