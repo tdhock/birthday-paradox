@@ -4,6 +4,7 @@ combinations <- 80640
 alist <- atime::atime(
   N=10^seq(1, 4.5, by=0.1),
   sapply=sapply(1:N, function(n)prod(seq(combinations, combinations-n+1)/combinations)),
+  pkg=cumprod::cumprod_interface((combinations-(1:N)+1)/combinations),
   cumprod=cumprod((combinations-(1:N)+1)/combinations),
   cumsum=exp(cumsum(log((combinations-(1:N)+1)/combinations))),
   result=TRUE)
@@ -19,6 +20,7 @@ plot(aref)
 
 alist <- atime::atime(
   sapply=sapply(1:N, function(n)prod(seq(N, N-n+1)/N)),
+  pkg=cumprod::cumprod_interface((N-(1:N)+1)/N),
   cumprod=cumprod((N-(1:N)+1)/N),
   cumsum=exp(cumsum(log((N-(1:N)+1)/N))),
   result=TRUE)
@@ -36,6 +38,7 @@ combinations <- 10^Nexp
 alist <- atime::atime(
   N=10^seq(1, Nexp, by=0.1),
   sapply=sapply(1:N, function(n)prod(seq(combinations, combinations-n+1)/combinations)),
+  pkg=cumprod::cumprod_interface((combinations-(1:N)+1)/combinations),
   cumprod=cumprod((combinations-(1:N)+1)/combinations),
   cumsum=exp(cumsum(log((combinations-(1:N)+1)/combinations))),
   result=TRUE)

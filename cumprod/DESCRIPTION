@@ -1,0 +1,16 @@
+Package: cumprod
+Type: Package
+Title: Cumulative Product Using Rcpp
+Version: 2026.4.4
+Authors@R: c(
+ person(given = c("Toby", "Dylan"),
+        family = "Hocking",
+        role = c("aut", "cre"),
+        email = "toby.hocking@r-project.org")
+ )
+Description: Demonstration of calling C++ code from R.
+License: GPL-3
+URL: https://github.com/tdhock/2026-01-aa-grande-echelle/tree/main/demos/Rcpp-add-pkg
+LinkingTo: Rcpp
+Imports: Rcpp
+Suggests: testthat

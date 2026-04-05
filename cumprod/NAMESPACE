@@ -1,0 +1,3 @@
+useDynLib(cumprod)
+importFrom(Rcpp, evalCpp)
+export(cumprod_interface)
