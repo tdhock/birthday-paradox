@@ -31,6 +31,18 @@ The figure above shows that
 
 ![ggplot](figure-gg-bday.png)
 
+## Update: day of the week
+
+Juliette writes one day of the week on each resulting in 7 times more combinations (564480 total), [figure-gg-œuvres-jours.R](figure-gg-œuvres-jours.R).
+
+![ggplot](figure-gg-œuvres-jours.png)
+
+The figure above shows that
+
+* for 1–884 œuvres created at random, it is more probable that they are all different.
+  * for 102 œuvres created at random, the probability that they are all different is 99.1%, so less than 1% chance that two come from the same combination of choices.
+* for 885–564480 œuvres created at random, it is more probable that two come from the same combination.
+
 ## atime analysis
 
 I analyzed the asymptotic time and memory usage of the different computation methods using atime.
