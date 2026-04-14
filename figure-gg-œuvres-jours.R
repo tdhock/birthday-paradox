@@ -1,6 +1,6 @@
 library(data.table)
 library(ggplot2)
-num.possible <- 80640*7
+(num.possible <- 80640*7)
 plus.colors <- c(
   "tous différents"="blue",
   "deux pareils"="red",
